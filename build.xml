@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project name="lesson1" default="compile" basedir=".">
+
+    <property name="src.dir" location="src" />
+    <property name="bin.dir" location="out" />
+    <property name="lib.dir" location="lib" />
+    <property name="jar.dir" value="dist"/>
+    <property name="jar.name" value="myapp.jar"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar" />
+    </path>
+
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp />
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${bin.dir}" />
+    </target>
+
+    <target name="clean" description="remove intermediate files">
+        <delete dir="${bin.dir}" />
+    </target>
+
+    <target name="compile" depends="init" description="compile the Java source code to class files">
+        <javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" />
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${jar.name}" basedir="${bin.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="Main"/>
+            </manifest>
+        </jar>
+        <echo>JAR file created: ${jar.dir}/${jar.name}</echo>
+    </target>
+
+</project>
