@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class StudentService extends AbstractEducationService {
 
-
     protected StudentService() {
         super(Database.STUDENTS);
     }

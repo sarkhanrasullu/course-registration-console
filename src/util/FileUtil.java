@@ -1,40 +1,23 @@
-package service;
-import entity.Human2;
+package util;
+import entity.Human;
+import entity.HumanWrapper;
+
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Try {
-    public static void main(String[] args) {
-        Human2 human = new Human2();
-        human.setName("Saadat");
-        human.setSurname("Mammadova");
+public class FileUtil {
 
-        writeFromObject(human);
-        System.out.println(readFromObject());
 
-        String text = "hello";
-        byte[] b = text.getBytes(StandardCharsets.UTF_8);
-
-        String fileName = "sample.txt";
-        writeFile(fileName, b);
-        readFile(fileName);
-
-        byte[] png = readFile("test.png");
-        writeFile("copyTest.png", png);
-
-    }
-
-    public static void writeFromObject(Human2 human) {
+    public static void writeObjectToFile(HumanWrapper humanWrapper) {
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("output.obj"))){
-            objectOutputStream.writeObject(human);
+            objectOutputStream.writeObject(humanWrapper);
         } catch (Exception e) {
             System.out.println("Corrupt file");
         }
     }
-    public static Object readFromObject() {
+    public static Object readObjectFromFile() {
         try (InputStream inputStream = new FileInputStream("output.obj");
              ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)){
 

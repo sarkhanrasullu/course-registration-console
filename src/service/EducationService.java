@@ -1,13 +1,13 @@
 package service;
-import entity.Alma;
+import entity.Human;
 import java.util.Scanner;
 
 public interface EducationService {
-    Alma register();
+    Human register();
 
     void showAll();
 
-    Alma search();
+    Human search();
 
     void delete();
 

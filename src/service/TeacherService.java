@@ -1,6 +1,7 @@
 package service;
 import entity.Student;
 import entity.Teacher;
+
 import java.util.Scanner;
 
 public class TeacherService extends AbstractEducationService {

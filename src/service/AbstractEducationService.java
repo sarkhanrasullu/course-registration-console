@@ -1,12 +1,17 @@
 package service;
-import entity.Alma;
+import entity.Human;
+import entity.HumanWrapper;
+import util.FileUtil;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public abstract class AbstractEducationService implements EducationService {
-    protected final ArrayList<Alma> list;
 
-    protected AbstractEducationService(ArrayList<Alma> list) {
+    protected final List<Human> list;
+
+    public AbstractEducationService(List<Human> list) {
         this.list = list;
     }
 
@@ -18,16 +23,16 @@ public abstract class AbstractEducationService implements EducationService {
     }
 
     @Override
-    public Alma search() {
+    public Human search() {
         System.out.println("Enter the email you want to search");
         String email = new Scanner(System.in).nextLine();
 
         for(int i=0; i<list.size();i++) {
-            Alma alma = list.get(i);
+            Human human = list.get(i);
 
-            if (alma.getEmail().equalsIgnoreCase(email)) {
-                System.out.println(alma);
-                return alma;
+            if (human.getEmail().equalsIgnoreCase(email)) {
+                System.out.println(human);
+                return human;
             }
         }
         return null;
@@ -51,6 +56,10 @@ public abstract class AbstractEducationService implements EducationService {
                 "4. Show all\n");
 
         return new Scanner(System.in).nextInt();
+    }
+
+    public HumanWrapper getHumanWrapper() {
+        return (HumanWrapper) FileUtil.readObjectFromFile();
     }
 
 }
