@@ -58,8 +58,4 @@ public abstract class AbstractEducationService implements EducationService {
         return new Scanner(System.in).nextInt();
     }
 
-    public HumanWrapper getHumanWrapper() {
-        return (HumanWrapper) FileUtil.readObjectFromFile();
-    }
-
 }
