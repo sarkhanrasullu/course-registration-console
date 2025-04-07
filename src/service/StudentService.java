@@ -31,7 +31,7 @@ public class StudentService extends AbstractEducationService {
 
         list.add(student);
 
-        FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);
+        Database.save();
 
         return student;
     }

@@ -1,7 +1,6 @@
 package service;
 import entity.Student;
 import entity.Teacher;
-import util.FileUtil;
 
 import java.util.Scanner;
 
@@ -32,7 +31,7 @@ public class TeacherService extends AbstractEducationService {
 
         list.add(teacher);
 
-        FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);
+        Database.save();
 
         return teacher;
     }
@@ -45,8 +44,8 @@ public class TeacherService extends AbstractEducationService {
             return;
         }
 
-        for(int i=0;i<list.size();i++) { // cant change Db.Students to list, not superclass
-            System.out.println(i+". "+list.get(i));
+        for(int i=0;i<Database.HUMAN_WRAPPER.students.size();i++) { // cant change Db.Students to list, not superclass
+            System.out.println(i+". "+Database.HUMAN_WRAPPER.students.get(i));
         }
 
         String continueToAdd = "yes";
@@ -59,7 +58,8 @@ public class TeacherService extends AbstractEducationService {
             System.out.println("Do you want to add another student?");
             continueToAdd = new Scanner(System.in).nextLine();
         }
-        FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);
+
+        Database.save();
     }
 
     @Override

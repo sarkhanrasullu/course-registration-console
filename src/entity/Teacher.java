@@ -18,6 +18,20 @@ public class Teacher extends Human {
     }
 
     public String toString() {
-        return getName()+" "+getSurname()+"\n"+getAge()+"\n"+getEmail()+"\n"+getStudents()+ "\n" +getSalary()+"\n";
+        String str = "name:"+getName()+"\n"+
+                "surname:"+getSurname()+"\n"+
+                "age:"+getAge()+"\n"+
+                "email:"+getEmail()+"\n"+
+                "salary:"+getSalary()+"\n";
+
+        str += "Students: \n";
+
+        ArrayList<Student> list = getStudents();
+        for(int i=0; i<list.size();i++) {
+            Student student = list.get(i);
+            str += student.getName() + " " + student.getSurname() + "\n";
+        }
+
+        return str;
     }
 }

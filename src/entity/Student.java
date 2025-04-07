@@ -15,7 +15,11 @@ public class Student extends Human {
     }
 
     public String toString() {
-        return getName()+" "+getSurname()+"\n"+getAge()+"\n"+getEmail()+"\n"+getScholarship()+"\n";
+        return "name:"+ getName()+"\n"+
+                "surname:"+ getSurname()+"\n"+
+                "age:"+ getAge()+"\n"+
+                "email:"+ getEmail()+"\n"+
+                "scholarship:"+ getScholarship()+"\n";
     }
 
 }

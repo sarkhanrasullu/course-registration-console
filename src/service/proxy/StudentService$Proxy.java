@@ -15,7 +15,7 @@ public class StudentService$Proxy extends StudentService {
 
     public Student register() {
         Student student = this.service.register();
-        FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);
+        Database.save();
 
         return student;
     }
