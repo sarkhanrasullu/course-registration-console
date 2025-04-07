@@ -24,6 +24,6 @@ public class Teacher extends Human {
     }
 
     public String toString() {
-        return getName()+" "+getSurname()+"\n"+getAge()+"\n"+getEmail()+"\n"+getStudents()+ "\n" +getSalary()+"\n";
+        return "Muellimin adi soyadi: "+getName()+" "+getSurname()+"\n Yashi:"+getAge()+"\n Maili:"+getEmail()+ "\n Maashi:" +getSalary()+"\n Telebeleri \n"+getStudents();
     }
 }

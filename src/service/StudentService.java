@@ -1,5 +1,7 @@
 package service;
 import entity.Student;
+import util.FileUtil;
+
 import java.util.Scanner;
 
 public class StudentService extends AbstractEducationService {
@@ -27,7 +29,10 @@ public class StudentService extends AbstractEducationService {
 
         Student student = new Student(name, surname, age, email, scholarship);
 
-        list.add(student);
+
+        Database.HUMAN_WRAPPER.getStudentss().add(student);
+        FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);
+
 
         return student;
     }
