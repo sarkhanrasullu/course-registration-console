@@ -8,7 +8,7 @@ public class HumanWrapper implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public List<Human> students = new ArrayList<>();
-    public List<Human> teachers = new ArrayList<>();
+    public final List<Human> students = new ArrayList<>();
+    public final List<Human> teachers = new ArrayList<>();
 
 }

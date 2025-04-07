@@ -1,5 +1,4 @@
 package util;
-import entity.Human;
 import entity.HumanWrapper;
 
 import java.io.*;
@@ -11,6 +10,15 @@ public class FileUtil {
 
 
     public static void writeObjectToFile(HumanWrapper humanWrapper) {
+        File file = new File("output.obj");
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("output.obj"))){
             objectOutputStream.writeObject(humanWrapper);
         } catch (Exception e) {
@@ -24,7 +32,7 @@ public class FileUtil {
             return objectInputStream.readObject();
         } catch (Exception e) {
             System.out.println("File could not be found");
-            return null;
+            return new HumanWrapper();
         }
     }
 

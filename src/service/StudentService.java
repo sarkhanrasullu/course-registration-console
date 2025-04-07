@@ -1,11 +1,13 @@
 package service;
 import entity.Student;
+import util.FileUtil;
+
 import java.util.Scanner;
 
 public class StudentService extends AbstractEducationService {
 
     protected StudentService() {
-        super(Database.STUDENTS);
+        super(Database.HUMAN_WRAPPER.students);
     }
 
     @Override
@@ -28,6 +30,8 @@ public class StudentService extends AbstractEducationService {
         Student student = new Student(name, surname, age, email, scholarship);
 
         list.add(student);
+
+        FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);
 
         return student;
     }
