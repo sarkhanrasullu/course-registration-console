@@ -1,14 +1,16 @@
 package service;
+import entity.Human;
 import entity.Student;
-import util.FileUtil;
 
 import java.util.Scanner;
 
 public class StudentService extends AbstractEducationService {
 
-    protected StudentService() {
+    private StudentService() {
         super(Database.HUMAN_WRAPPER.students);
     }
+
+    private static StudentService instance;
 
     @Override
     public Student register() {
@@ -34,5 +36,56 @@ public class StudentService extends AbstractEducationService {
         return student;
     }
 
+    public static StudentService instance(boolean isSave) {
+        if(instance==null) {
+            if(isSave) {
+                instance = new StudentService$Proxy(new StudentService());
+            }else {
+                instance = new StudentService();
+            }
+        }
+
+        return instance;
+    }
+
+
+    private static class StudentService$Proxy extends StudentService {
+
+        private final StudentService service;
+
+        public StudentService$Proxy(StudentService service) {
+            this.service = service;
+        }
+
+        @Override
+        public Student register() {
+            Student student = this.service.register();
+            Database.save();
+
+            return student;
+        }
+
+        @Override
+        public void showAll() {
+            this.service.showAll();
+        }
+
+        @Override
+        public Human search() {
+            return this.service.search();
+        }
+
+        @Override
+        public void delete() {
+            this.service.delete();
+
+            Database.save();
+        }
+
+        @Override
+        public int showMenu() {
+            return this.service.showMenu();
+        }
+    }
 
 }

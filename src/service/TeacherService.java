@@ -1,4 +1,5 @@
 package service;
+import entity.Human;
 import entity.Student;
 import entity.Teacher;
 
@@ -6,7 +7,9 @@ import java.util.Scanner;
 
 public class TeacherService extends AbstractEducationService {
 
-    protected TeacherService() {
+    private static TeacherService instance;
+
+    private TeacherService() {
         super(Database.HUMAN_WRAPPER.teachers);
     }
 
@@ -81,4 +84,61 @@ public class TeacherService extends AbstractEducationService {
         }
     }
 
+    public static TeacherService instance(boolean isSave) {
+        if(instance==null) {
+            if(isSave) {
+                instance = new TeacherService$Proxy(new TeacherService());
+            }else {
+                instance = new TeacherService();
+            }
+        }
+
+        return instance;
+    }
+
+    private static class TeacherService$Proxy extends TeacherService {
+
+        private final TeacherService service;
+
+        public TeacherService$Proxy(TeacherService service) {
+            this.service = service;
+        }
+
+        @Override
+        public Teacher register() {
+            Teacher teacher = this.service.register();
+            Database.save();
+
+            return teacher;
+        }
+
+        @Override
+        public void showAll() {
+            this.service.showAll();
+        }
+
+        @Override
+        public Human search() {
+            return this.service.search();
+        }
+
+        @Override
+        public void delete() {
+            this.service.delete();
+            Database.save();
+        }
+
+        @Override
+        public int showMenu() {
+            return this.service.showMenu();
+        }
+
+        @Override
+        public void addStudentsToTeacher() {
+            this.service.addStudentsToTeacher();
+            Database.save();
+        }
+    }
+
 }
+
