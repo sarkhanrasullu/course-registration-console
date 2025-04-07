@@ -30,7 +30,7 @@ public class TeacherService extends AbstractEducationService {
 
         Teacher teacher = new Teacher(name, surname, age, email, salary);
 
-        Database.HUMAN_WRAPPER.getTeachers().add(teacher);
+        Database.HUMAN_WRAPPER.teachers.add(teacher);
         FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);
 
         return teacher;

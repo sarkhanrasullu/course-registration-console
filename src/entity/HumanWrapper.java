@@ -11,19 +11,4 @@ public class HumanWrapper implements Serializable {
     public List<Human> students = new ArrayList<>();
     public List<Human> teachers = new ArrayList<>();
 
-    public List<Human> getStudentss() {
-        return students;
-    }
-
-    public void setStudents(List<Human> students) {
-        this.students = students;
-    }
-
-    public List<Human> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(List<Human> teachers) {
-        this.teachers = teachers;
-    }
 }

@@ -30,7 +30,7 @@ public class StudentService extends AbstractEducationService {
         Student student = new Student(name, surname, age, email, scholarship);
 
 
-        Database.HUMAN_WRAPPER.getStudentss().add(student);
+        Database.HUMAN_WRAPPER.students.add(student);
         FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);
 
 
