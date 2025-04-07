@@ -1,12 +1,15 @@
+import service.Database;
 import service.EducationService;
 
 public class Application {
 
     public void main(String[] args) {
         while (true) {
-            EducationService educationService = EducationService.chooseService();
+            boolean isSave = "save-to-file".equalsIgnoreCase(args.length>0?args[0]:"");
 
-            educationService.chooseAndExecuteSelectedMenu();
+            Database.initialize(isSave);
+
+            EducationService.chooseService(isSave).chooseAndExecuteSelectedMenu();
         }
     }
 

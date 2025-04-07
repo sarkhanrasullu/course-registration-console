@@ -45,8 +45,6 @@ public abstract class AbstractEducationService implements EducationService {
         int index = new Scanner(System.in).nextInt();
         list.remove(index);
         System.out.println("Deleted ✔ \n");
-
-        Database.save();
     }
 
     @Override

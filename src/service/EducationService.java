@@ -1,5 +1,8 @@
 package service;
 import entity.Human;
+import service.proxy.StudentService$Proxy;
+import service.proxy.TeacherService$Proxy;
+
 import java.util.Scanner;
 
 public interface EducationService {
@@ -27,7 +30,7 @@ public interface EducationService {
         executeSelectedMenu(selectedMenu);
     }
 
-    static EducationService chooseService() {
+    static EducationService chooseService(boolean save) {
         System.out.println("Please enter the option:\n"+
                 "1. Student\n"+
                 "2. Teacher\n"+
@@ -35,9 +38,9 @@ public interface EducationService {
 
         int index = new Scanner(System.in).nextInt();
         if(index==1) {
-            return new StudentService();
+            return save? new StudentService$Proxy(new StudentService()) : new StudentService();
         } else if(index==2) {
-            return new TeacherService();
+            return save? new TeacherService$Proxy(new TeacherService()) : new TeacherService();
         } else if(index==3) {
             System.out.println("Exited");
             System.exit(1);

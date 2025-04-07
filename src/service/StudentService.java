@@ -31,8 +31,6 @@ public class StudentService extends AbstractEducationService {
 
         list.add(student);
 
-        Database.save();
-
         return student;
     }
 

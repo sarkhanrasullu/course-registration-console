@@ -31,8 +31,6 @@ public class TeacherService extends AbstractEducationService {
 
         list.add(teacher);
 
-        Database.save();
-
         return teacher;
     }
 
@@ -58,8 +56,6 @@ public class TeacherService extends AbstractEducationService {
             System.out.println("Do you want to add another student?");
             continueToAdd = new Scanner(System.in).nextLine();
         }
-
-        Database.save();
     }
 
     @Override
