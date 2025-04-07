@@ -1,4 +1,5 @@
 package service;
+import annotations.Saveable;
 import entity.Human;
 import entity.HumanWrapper;
 import util.FileUtil;
@@ -39,6 +40,7 @@ public abstract class AbstractEducationService implements EducationService {
     }
 
     @Override
+    @Saveable
     public void delete() {
         System.out.println("Who do you want to remove from the list?");
         showAll();

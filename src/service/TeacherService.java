@@ -1,4 +1,5 @@
 package service;
+import annotations.Saveable;
 import entity.Student;
 import entity.Teacher;
 
@@ -10,6 +11,7 @@ public class TeacherService extends AbstractEducationService {
         super(Database.HUMAN_WRAPPER.teachers);
     }
 
+    @Saveable
     @Override
     public Teacher register() { // stays, special to Teacher
         System.out.println("Enter teacher's name");
@@ -34,6 +36,7 @@ public class TeacherService extends AbstractEducationService {
         return teacher;
     }
 
+    @Saveable
     public void addStudentsToTeacher() { //stays, special to Teacher
         Teacher found = (Teacher) search(); // casting Teacher to Human type
 

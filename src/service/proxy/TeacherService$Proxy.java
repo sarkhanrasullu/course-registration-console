@@ -1,11 +1,14 @@
 package service.proxy;
 
+import annotations.Saveable;
 import entity.Human;
 import entity.Student;
 import entity.Teacher;
 import service.Database;
 import service.StudentService;
 import service.TeacherService;
+
+import static service.proxy.ProxyUtil.save;
 
 public class TeacherService$Proxy extends TeacherService {
 
@@ -15,38 +18,46 @@ public class TeacherService$Proxy extends TeacherService {
         this.service = service;
     }
 
+    @Saveable
     @Override
     public Teacher register() {
         Teacher teacher = this.service.register();
-        Database.save();
 
+        save("register", TeacherService.class);
         return teacher;
     }
 
     @Override
     public void showAll() {
-        super.showAll();
+        this.service.showAll();
+        save("showAll", TeacherService.class);
     }
 
     @Override
     public Human search() {
-        return super.search();
+        Human search = this.service.search();
+        save("search", TeacherService.class);
+        return search;
     }
 
+    @Saveable
     @Override
     public void delete() {
-        super.delete();
-        Database.save();
+        this.service.delete();
+        save("delete", TeacherService.class);
     }
 
     @Override
     public int showMenu() {
-        return super.showMenu();
+        int i = this.service.showMenu();
+        save("showMenu", TeacherService.class);
+        return i;
     }
 
+    @Saveable
     @Override
     public void addStudentsToTeacher() {
-        super.addStudentsToTeacher();
-        Database.save();
+        this.service.addStudentsToTeacher();
+        save("addStudentsToTeacher", TeacherService.class);
     }
 }

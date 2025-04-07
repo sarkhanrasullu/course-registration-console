@@ -2,8 +2,9 @@ package service.proxy;
 
 import entity.Human;
 import entity.Student;
-import service.Database;
 import service.StudentService;
+
+import static service.proxy.ProxyUtil.save;
 
 public class StudentService$Proxy extends StudentService {
 
@@ -16,30 +17,35 @@ public class StudentService$Proxy extends StudentService {
     @Override
     public Student register() {
         Student student = this.service.register();
-        Database.save();
+        save("register", StudentService.class);
 
         return student;
     }
 
     @Override
     public void showAll() {
-        super.showAll();
+        this.service.showAll();
+        save("showAll", StudentService.class);
     }
 
     @Override
     public Human search() {
-        return super.search();
+        Human search = this.service.search();
+        save("search", StudentService.class);
+        return search;
     }
 
     @Override
     public void delete() {
-        super.delete();
-
-        Database.save();
+        this.service.delete();
+        save("delete", StudentService.class);
     }
 
     @Override
     public int showMenu() {
-        return super.showMenu();
+        int i = this.service.showMenu();
+        save("showMenu", StudentService.class);
+        return i;
     }
+
 }
