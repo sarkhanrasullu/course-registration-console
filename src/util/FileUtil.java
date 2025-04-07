@@ -8,23 +8,14 @@ import java.nio.file.Paths;
 
 public class FileUtil {
 
-
     public static void writeObjectToFile(HumanWrapper humanWrapper) {
-        File file = new File("output.obj");
-        if(!file.exists()){
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("output.obj"))){
             objectOutputStream.writeObject(humanWrapper);
         } catch (Exception e) {
             System.out.println("Corrupt file");
         }
     }
+
     public static Object readObjectFromFile() {
         try (InputStream inputStream = new FileInputStream("output.obj");
              ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)){
