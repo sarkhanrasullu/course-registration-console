@@ -4,6 +4,7 @@ import entity.Human;
 import java.util.Scanner;
 
 public interface EducationService {
+
     Human register();
 
     void showAll();

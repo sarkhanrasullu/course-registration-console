@@ -48,7 +48,6 @@ public class StudentService extends AbstractEducationService {
         return instance;
     }
 
-
     private static class StudentService$Proxy extends StudentService {
 
         private final StudentService service;
