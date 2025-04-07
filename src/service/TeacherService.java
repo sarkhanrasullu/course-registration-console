@@ -1,6 +1,7 @@
 package service;
 import entity.Student;
 import entity.Teacher;
+import util.FileUtil;
 
 import java.util.Scanner;
 
@@ -29,7 +30,8 @@ public class TeacherService extends AbstractEducationService {
 
         Teacher teacher = new Teacher(name, surname, age, email, salary);
 
-        list.add(teacher);
+        Database.HUMAN_WRAPPER.getTeachers().add(teacher);
+        FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);
 
         return teacher;
     }
@@ -51,7 +53,8 @@ public class TeacherService extends AbstractEducationService {
             System.out.println("Which student do you want to add?");
             int index = new Scanner(System.in).nextInt();
             Student selectedStudent = (Student) Database.STUDENTS.get(index); // casting, cant change to list, not superclass
-            found.getStudents().add(selectedStudent); // teacher-in student siyahisina elave et
+            found.getStudents().add(selectedStudent);
+            FileUtil.writeObjectToFile(Database.HUMAN_WRAPPER);// teacher-in student siyahisina elave et
 
             System.out.println("Do you want to add another student?");
             continueToAdd = new Scanner(System.in).nextLine();
